@@ -15,12 +15,13 @@ WHO_WE_ARE_MENU = [
 ]
 
 MAIN_MENU = [
+    ["تعرف علينا"],
     ["من نحن"],
+    ["كيفية التسجيل"],
     ["التقييم الدراسي"],
     ["المشرف الدراسي"],
-    ["دوراتنا"],
-    ["تعرف علينا"],
-    ["كيفية التسجيل"]
+    ["الدعم الفني"]
+    
 ]
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -53,14 +54,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_video(
                 video="https://hassanhandal.github.io/SAIHSBOT/mentor.mp4",caption="#الإشراف_الدراسي"
                 )
-        elif text == "دوراتنا":
+        elif text == "الدعم الفني":
             await update.message.reply_text(
-                "📚 دوراتنا:\n"
-                "1. [دورة الفقه الميسر](https://t.me/your_course_link1)\n"
-                "2. [دورة العقيدة](https://t.me/your_course_link2)\n"
-                "3. [دورة السيرة النبوية](https://t.me/your_course_link3)",
-                parse_mode="Markdown"
-            )
+                "@Al_Da3m_Alfanny" )
         elif text == "كيفية التسجيل":
             await update.message.reply_video(video="https://hassanhandal.github.io/SAIHSBOT/howtoadmit.mp4",caption="#كيفية_التسجيل")
         elif text == "تعرف علينا":
