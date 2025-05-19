@@ -48,19 +48,19 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text("📖 اختر من نحن:", reply_markup=reply_markup)
         elif text == "التقييم الدراسي":
             await update.message.reply_video(
-                video="https://hassanhandal.github.io/SAIHSBOT/grading.mp4",caption="#التقييم_الدراسي"
+                video=os.getenv("grading"),caption="#التقييم_الدراسي"
             )
         elif text == "المشرف الدراسي":
             await update.message.reply_video(
-                video="https://hassanhandal.github.io/SAIHSBOT/mentor.mp4",caption="#الإشراف_الدراسي"
+                video=os.getenv("mentor"),caption="#الإشراف_الدراسي"
                 )
         elif text == "الدعم الفني":
             await update.message.reply_text(
                 "@Al_Da3m_Alfanny" )
         elif text == "كيفية التسجيل":
-            await update.message.reply_video(video="https://hassanhandal.github.io/SAIHSBOT/howtoadmit.mp4",caption="#كيفية_التسجيل")
+            await update.message.reply_video(video=os.getenv("howtoadmit"),caption="#كيفية_التسجيل")
         elif text == "تعرف علينا":
-            await update.message.reply_video(video="https://hassanhandal.github.io/SAIHSBOT/knowus.mp4",caption="#تعرف_علينا")
+            await update.message.reply_video(video=os.getenv("knowus"),caption="#تعرف_علينا")
         else:
             await update.message.reply_text("يرجى اختيار خيار من القائمة الرئيسية.")
 
