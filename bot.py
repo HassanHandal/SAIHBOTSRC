@@ -1,0 +1,113 @@
+from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
+
+TOKEN = "7550572441:AAH5UrMkt4IJtqBfErFYnpoZnGCii58aUtg"
+
+# تخزين الحالة الحالية لكل مستخدم
+USER_STATE = {}
+
+# --- الردود ---
+WHO_WE_ARE_MENU = [
+    ["رؤيتنا"],
+    ["هدفنا"],
+    ["مميزات الأكاديمية"],
+    ["↩ العودة للقائمة الرئيسية"]
+]
+
+MAIN_MENU = [
+    ["من نحن"],
+    ["التقييم الدراسي"],
+    ["المشرف الدراسي"],
+    ["دوراتنا"],
+    ["تعرف علينا"],
+    ["كيفية التسجيل"]
+]
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    USER_STATE[update.effective_user.id] = "MAIN"
+    reply_markup = ReplyKeyboardMarkup(MAIN_MENU, resize_keyboard=True)
+    await update.message.reply_text("مرحبًا بك في الأكاديمية العلمية ✨\nاختر من القائمة التالية:", reply_markup=reply_markup)
+
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    text = update.message.text
+
+    if text == "↩ العودة للقائمة الرئيسية":
+        USER_STATE[user_id] = "MAIN"
+        reply_markup = ReplyKeyboardMarkup(MAIN_MENU, resize_keyboard=True)
+        await update.message.reply_text("تم الرجوع إلى القائمة الرئيسية:", reply_markup=reply_markup)
+        return
+
+    state = USER_STATE.get(user_id, "MAIN")
+
+    if state == "MAIN":
+        if text == "من نحن":
+            USER_STATE[user_id] = "WHO"
+            reply_markup = ReplyKeyboardMarkup(WHO_WE_ARE_MENU, resize_keyboard=True)
+            await update.message.reply_text("📖 اختر من نحن:", reply_markup=reply_markup)
+        elif text == "التقييم الدراسي":
+            await update.message.reply_video(
+                video="https://hassanhandal.github.io/SAIHSBOT/grading.mp4",caption="#التقييم_الدراسي"
+            )
+        elif text == "المشرف الدراسي":
+            await update.message.reply_video(
+                video="https://hassanhandal.github.io/SAIHSBOT/mentor.mp4",caption="#الإشراف_الدراسي"
+                )
+        elif text == "دوراتنا":
+            await update.message.reply_text(
+                "📚 دوراتنا:\n"
+                "1. [دورة الفقه الميسر](https://t.me/your_course_link1)\n"
+                "2. [دورة العقيدة](https://t.me/your_course_link2)\n"
+                "3. [دورة السيرة النبوية](https://t.me/your_course_link3)",
+                parse_mode="Markdown"
+            )
+        elif text == "كيفية التسجيل":
+            await update.message.reply_video(video="https://hassanhandal.github.io/SAIHSBOT/howtoadmit.mp4",caption="#كيفية_التسجيل")
+        elif text == "تعرف علينا":
+            await update.message.reply_video(video="https://hassanhandal.github.io/SAIHSBOT/knowus.mp4",caption="#تعرف_علينا")
+        else:
+            await update.message.reply_text("يرجى اختيار خيار من القائمة الرئيسية.")
+
+    elif state == "WHO":
+        if text == "رؤيتنا":
+            await update.message.reply_text(
+                "🌟 رؤيتنا:\n"
+                "✨ نفتح لك آفاق التعلم\n"
+                "🧭 نؤسس لك القواعد العلمية التي تمكنك من الإبحار في مستويات العلم الشرعي بسهولة.\n"
+                "👨‍🏫 تتعلم على يد نخبة من المتخصصين في مجال العلم الشرعي.\n"
+                "💻 تتعلم من خلال وسائل التعلم المتقدمة المعتمدة في برنامج الأكاديمية."
+            )
+        elif text == "هدفنا":
+            await update.message.reply_text(
+                "🎯 هدفنا:\n"
+                "📢 المساهمة في توصيل العلم الشرعي للراغبين فيه من خلال تيسير ما لا يسع المسلم جهله لعامة المسلمين.\n"
+                "💻 إزالة موانع تعلم العلم الشرعي من خلال استخدام التقنية في تعليم العلوم الشرعية.\n"
+                "📖 نشر العلم الشرعي القائم على كتاب الله وسنة صلى الله عليه وسلم.\n"
+                "🌟 تعليم العلم صافيًا نقيًا بفهم خير القرون."
+            )
+        elif text == "مميزات الأكاديمية":
+            await update.message.reply_text(
+                "🏅 مميزات الأكاديمية:\n"
+                "🎥 1- البث المباشر لجميع المحاضرات، ليتمكن الطالب: من التفاعل مع المحاضر – لئلا تكون المحاضرة مجرد تلقين\n"
+                "🧑‍🏫 2- ونظام الإشراف الدراسي: بحيث يوجد لكل طالبٍ – مشرفٌ يتابع حضوره، ويجيب على إشكالاته\n"
+                "📝 3- والتدريبات الدورية على كل محاضرة ليتمكن الطالب من تثبيت المعلومات\n"
+                "🌱 4- والاهتمام بالجانب التربوي والعملي – لكيلا يكون (العلم) مجردًا عن العمل .........\n"
+                "\n"
+                "📝 بادر بتسجيل اسمك – في الدفعة الجديدة لهذا العام\n"
+                "📢 وتأكد من اشتراكك في القناة العامة للأكاديمية على التليجرام:\n"
+                "🔗 https://t.me/Academy_of_Human_Sciences\n"
+                "\n"
+                "🏛️ الأكاديمية العلمية (للدراسات الإسلامية والإنسانية): طريقك نحو ميراث الأنبياء."
+            )
+        
+        else:
+            await update.message.reply_text("اختر من القائمة الفرعية أو اضغط ↩ للرجوع.")
+
+# إعداد البوت
+app = ApplicationBuilder().token(TOKEN).build()
+
+app.add_handler(CommandHandler("start", start))
+app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+
+print("🤖 البوت شغال... جرب /start من تيليجرام")
+app.run_polling()
