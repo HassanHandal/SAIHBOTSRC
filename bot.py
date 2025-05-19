@@ -1,7 +1,7 @@
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
-
-TOKEN = "7550572441:AAH5UrMkt4IJtqBfErFYnpoZnGCii58aUtg"
+import os
+TOKEN = os.getenv("BOT_TOKEN")
 
 # تخزين الحالة الحالية لكل مستخدم
 USER_STATE = {}
