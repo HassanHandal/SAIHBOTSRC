@@ -56,7 +56,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 )
         elif text == "الدعم الفني":
             await update.message.reply_text(
-                "@Al_Da3m_Alfanny" )
+                "للتواصل مع الدعم الفني اضغط هنا @Al_Da3m_Alfanny" )
         elif text == "كيفية التسجيل":
             await update.message.reply_video(video=os.getenv("howtoadmit"),caption="#كيفية_التسجيل")
         elif text == "تعرف علينا":
