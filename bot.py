@@ -23,13 +23,17 @@ MAIN_MENU = [
     ["👨‍💻الدعم الفني"]
     
 ]
-
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def send_welcome(update: Update, context: ContextTypes.DEFAULT_TYPE):
     USER_STATE[update.effective_user.id] = "MAIN"
     reply_markup = ReplyKeyboardMarkup(MAIN_MENU, resize_keyboard=True)
-    await update.message.reply_photo(photo="https://hassanhandal.github.io/SAIHSBOT/start.jpg",caption="مرحبًا بك في الأكاديمية العلمية للدراسات الإسلامية والإنسانية ✨\nاختر من القائمة التالية:", reply_markup=reply_markup)
+    await update.message.reply_photo(
+        photo="https://hassanhandal.github.io/SAIHSBOT/start.jpg",
+        caption="مرحبًا بك في الأكاديمية العلمية للدراسات الإسلامية والإنسانية ✨\nاختر من القائمة التالية:",
+        reply_markup=reply_markup
+    )
 
-
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await send_welcome(update, context)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
@@ -64,7 +68,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         elif text == "🍃تعرف علينا🍃":
             await update.message.reply_video(video=os.getenv("knowus"),caption="#تعرف_علينا")
         else:
-                await update.message.reply_photo(photo="https://hassanhandal.github.io/SAIHSBOT/start.jpg",caption="مرحبًا بك في الأكاديمية العلمية للدراسات الإسلامية والإنسانية ✨\nاختر من القائمة التالية:", reply_markup=reply_markup)
+    await send_welcome(update, context)
 
     elif state == "WHO":
         if text == "🍃رؤيتنا🍃":
