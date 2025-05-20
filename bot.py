@@ -26,18 +26,11 @@ MAIN_MENU = [
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     USER_STATE[update.effective_user.id] = "MAIN"
-    chat_id = update.effective_chat.id
-    await context.bot.send_photo(
-        chat_id=chat_id,
-        photo="https://hassanhandal.github.io/SAIHSBOT/start.jpg",  
-        caption=(
-            " مرحبًا بك في *الأكاديمية العلمية للدراسات الإسلامية والإنسانية ✨*\n"
-            "اختر من القائمة التالية:"
-        ),
-        parse_mode="Markdown"
-    )
-reply_markup = ReplyKeyboardMarkup(MAIN_MENU, resize_keyboard=True)
-    await update.message.reply_text("⬇️ القائمة الرئيسية:", reply_markup=reply_markup)
+    reply_markup = ReplyKeyboardMarkup(MAIN_MENU, resize_keyboard=True)
+    wait update.message.reply_photo(photo="https://hassanhandal.github.io/SAIHSBOT/start.jpg",caption="مرحبًا بك في الأكاديمية العلمية للدراسات الإسلامية والإنسانية ✨\nاختر من القائمة التالية:", reply_markup=reply_markup)
+
+
+
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     text = update.message.text
