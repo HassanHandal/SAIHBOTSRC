@@ -64,7 +64,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         elif text == "🍃تعرف علينا🍃":
             await update.message.reply_video(video=os.getenv("knowus"),caption="#تعرف_علينا")
         else:
-            await update.message.reply_text("يرجى اختيار خيار من القائمة الرئيسية.")
+                await update.message.reply_photo(photo="https://hassanhandal.github.io/SAIHSBOT/start.jpg",caption="مرحبًا بك في الأكاديمية العلمية للدراسات الإسلامية والإنسانية ✨\nاختر من القائمة التالية:", reply_markup=reply_markup)
 
     elif state == "WHO":
         if text == "🍃رؤيتنا🍃":
