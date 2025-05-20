@@ -103,7 +103,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
         
         else:
-            await update.message.reply_text("اختر من القائمة الفرعية أو اضغط ↩ للرجوع.")
+            USER_STATE[user_id] = "MAIN"
+        reply_markup = ReplyKeyboardMarkup(MAIN_MENU, resize_keyboard=True)
+        await update.message.reply_text("تم الرجوع إلى القائمة الرئيسية:", reply_markup=reply_markup)
+        return
+
+    state = USER_STATE.get(user_id, "MAIN")
 
 # إعداد البوت
 app = ApplicationBuilder().token(TOKEN).build()
