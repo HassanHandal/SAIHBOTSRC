@@ -27,7 +27,7 @@ MAIN_MENU = [
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     USER_STATE[update.effective_user.id] = "MAIN"
     reply_markup = ReplyKeyboardMarkup(MAIN_MENU, resize_keyboard=True)
-    wait update.message.reply_photo(photo="https://hassanhandal.github.io/SAIHSBOT/start.jpg",caption="مرحبًا بك في الأكاديمية العلمية للدراسات الإسلامية والإنسانية ✨\nاختر من القائمة التالية:", reply_markup=reply_markup)
+    await update.message.reply_photo(photo="https://hassanhandal.github.io/SAIHSBOT/start.jpg",caption="مرحبًا بك في الأكاديمية العلمية للدراسات الإسلامية والإنسانية ✨\nاختر من القائمة التالية:", reply_markup=reply_markup)
 
 
 
