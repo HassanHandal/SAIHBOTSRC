@@ -36,7 +36,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ),
         parse_mode="Markdown"
     )
-
+reply_markup = ReplyKeyboardMarkup(MAIN_MENU, resize_keyboard=True)
+    await update.message.reply_text("⬇️ القائمة الرئيسية:", reply_markup=reply_markup)
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     text = update.message.text
