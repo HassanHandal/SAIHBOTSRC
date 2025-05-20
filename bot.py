@@ -9,7 +9,7 @@ USER_STATE = {}
 # --- الردود ---
 WHO_WE_ARE_MENU = [
     ["🍃رؤيتنا🍃"],
-    ["هدفن🍃ا🍃"],
+    ["🍃هدفنا🍃"],
     ["🍃مميزات الأكاديمية🍃"],
     ["↩ العودة للقائمة الرئيسية"]
 ]
@@ -44,30 +44,30 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     state = USER_STATE.get(user_id, "MAIN")
 
     if state == "MAIN":
-        if text == "من نحن":
+        if text == "🍃من نحن🍃":
             USER_STATE[user_id] = "WHO"
             reply_markup = ReplyKeyboardMarkup(WHO_WE_ARE_MENU, resize_keyboard=True)
             await update.message.reply_text("📖 اختر من نحن:", reply_markup=reply_markup)
-        elif text == "التقييم الدراسي":
+        elif text == "🍃التقييم الدراسي🍃":
             await update.message.reply_video(
                 video=os.getenv("grading"),caption="#التقييم_الدراسي"
             )
-        elif text == "المشرف الدراسي":
+        elif text == "🍃المشرف الدراسي🍃":
             await update.message.reply_video(
                 video=os.getenv("mentor"),caption="#الإشراف_الدراسي"
                 )
-        elif text == "الدعم الفني":
+        elif text == "👨‍💻الدعم الفني":
             await update.message.reply_text(
                 "للتواصل مع الدعم الفني اضغط هنا @Al_Da3m_Alfanny" )
-        elif text == "كيفية التسجيل":
+        elif text == "🍃كيفية التسجيل🍃":
             await update.message.reply_video(video=os.getenv("howtoadmit"),caption="#كيفية_التسجيل")
-        elif text == "تعرف علينا":
+        elif text == "🍃تعرف علينا🍃":
             await update.message.reply_video(video=os.getenv("knowus"),caption="#تعرف_علينا")
         else:
             await update.message.reply_text("يرجى اختيار خيار من القائمة الرئيسية.")
 
     elif state == "WHO":
-        if text == "رؤيتنا":
+        if text == "🍃رؤيتنا🍃":
             await update.message.reply_text(
                 "🌟 رؤيتنا:\n"
                 "✨ نفتح لك آفاق التعلم\n"
@@ -75,7 +75,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "👨‍🏫 تتعلم على يد نخبة من المتخصصين في مجال العلم الشرعي.\n"
                 "💻 تتعلم من خلال وسائل التعلم المتقدمة المعتمدة في برنامج الأكاديمية."
             )
-        elif text == "هدفنا":
+        elif text == "🍃هدفنا🍃":
             await update.message.reply_text(
                 "🎯 هدفنا:\n"
                 "📢 المساهمة في توصيل العلم الشرعي للراغبين فيه من خلال تيسير ما لا يسع المسلم جهله لعامة المسلمين.\n"
@@ -83,7 +83,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "📖 نشر العلم الشرعي القائم على كتاب الله وسنة صلى الله عليه وسلم.\n"
                 "🌟 تعليم العلم صافيًا نقيًا بفهم خير القرون."
             )
-        elif text == "مميزات الأكاديمية":
+        elif text == "🍃مميزات الأكاديمية🍃":
             await update.message.reply_text(
                 "🏅 مميزات الأكاديمية:\n"
                 "🎥 1- البث المباشر لجميع المحاضرات، ليتمكن الطالب: من التفاعل مع المحاضر – لئلا تكون المحاضرة مجرد تلقين\n"
