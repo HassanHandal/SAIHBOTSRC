@@ -68,7 +68,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         elif text == "🍃تعرف علينا🍃":
             await update.message.reply_video(video=os.getenv("knowus"),caption="#تعرف_علينا")
         else:
-    await send_welcome(update, context)
+            await send_welcome(update,context)
 
     elif state == "WHO":
         if text == "🍃رؤيتنا🍃":
