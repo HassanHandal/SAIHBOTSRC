@@ -104,8 +104,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         else:
              USER_STATE[user_id] = "WHO"
-            reply_markup = ReplyKeyboardMarkup(WHO_WE_ARE_MENU, resize_keyboard=True)
-            await update.message.reply_text("📖 اختر من نحن:", reply_markup=reply_markup)
+             reply_markup = ReplyKeyboardMarkup(WHO_WE_ARE_MENU, resize_keyboard=True)
+             await update.message.reply_text("📖 اختر من نحن:", reply_markup=reply_markup)
 
 # إعداد البوت
 app = ApplicationBuilder().token(TOKEN).build()
