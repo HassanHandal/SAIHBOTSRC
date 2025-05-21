@@ -20,6 +20,7 @@ MAIN_MENU = [
     ["🍃كيفية التسجيل🍃"],
     ["🍃التقييم الدراسي🍃"],
     ["🍃المشرف الدراسي🍃"],
+    ["🍃روابط هامة🍃"],
     ["👨‍💻الدعم الفني"]
     
 ]
@@ -67,6 +68,16 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_video(video=os.getenv("howtoadmit"),caption="#كيفية_التسجيل")
         elif text == "🍃تعرف علينا🍃":
             await update.message.reply_video(video=os.getenv("knowus"),caption="#تعرف_علينا")
+        elif text == "🍃روابط هامة🍃":
+            await update.message.reply_text("لا يفوتكم الاشتراك في قنوات ومجموعات الأكاديمية
+📌القناة العامة للأكاديمية
+https://t.me/Academy_of_Human_Sciences
+📌قناة الدورات التربوية والتعبدية
+https://t.me/wakana_lana_abedeen
+📌المجموعة التفاعلية العامة (رجال)
+https://t.me/+NI-GBRRv8kE0NGY0
+📌المجموعة التفاعلية العامة (نساء) 
+https://t.me/+Onam_7z2cC85ZWU0")
         else:
             await send_welcome(update,context)
 
